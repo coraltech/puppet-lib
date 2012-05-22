@@ -1,0 +1,4 @@
+# Eclipse IDE files.
+.project
+.buildpath
+.cache
