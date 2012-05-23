@@ -16,3 +16,6 @@
 [submodule "modules/iptables"]
 	path = modules/iptables
 	url = git://github.com/coraltech/puppet-iptables.git
+[submodule "modules/ssh"]
+	path = modules/ssh
+	url = git://github.com/coraltech/puppet-ssh.git
