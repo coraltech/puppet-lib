@@ -1,0 +1,4 @@
+
+node web inherits default {
+
+}
