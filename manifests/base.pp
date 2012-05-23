@@ -5,7 +5,7 @@ node default {
 
   #-----------------------------------------------------------------------------
 
-  class { 'server': }
+  class { 'global_lib': }
   class { 'puppet': module_paths => [ "${params::puppet_path}/modules" ] }
 
   class { 'ntp': autoupdate => false }
