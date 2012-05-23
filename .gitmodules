@@ -19,3 +19,6 @@
 [submodule "modules/ssh"]
 	path = modules/ssh
 	url = git://github.com/coraltech/puppet-ssh.git
+[submodule "modules/sudo"]
+	path = modules/sudo
+	url = git://github.com/coraltech/puppet-sudo.git
