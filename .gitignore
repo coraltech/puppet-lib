@@ -1,3 +1,6 @@
+# Puppet configurations.
+manifests/params.pp
+
 # Eclipse IDE files.
 .project
 .buildpath
