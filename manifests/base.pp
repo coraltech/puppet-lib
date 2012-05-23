@@ -17,7 +17,7 @@ node default {
 
   #---
 
-  class { 'ssh': port => $params::ssh_port, user_groups => [ $params::admin_group ] }
+  class { 'ssh': port => $params::ssh_port, user_groups => [ $params::admin_group, 'git' ] }
   class { 'sudo': permissions => [
     "%${params::admin_group} ALL=(ALL) ALL",
   ] }
