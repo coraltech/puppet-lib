@@ -25,3 +25,6 @@
 [submodule "modules/users"]
 	path = modules/users
 	url = git://github.com/coraltech/puppet-users.git
+[submodule "modules/git"]
+	path = modules/git
+	url = git://github.com/coraltech/puppet-git.git
