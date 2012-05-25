@@ -20,6 +20,8 @@ class params_default {
   $admin_editor   = 'vim'
   $admin_email    = ''
 
+  $git_user       = true
+  $git_group      = 'git'
   $git_home       = '/var/git'
   $git_root_email = '<ROOT EMAIL HERE>'
   $git_skel_email = '<DEFAULT USER EMAIL HERE>'
@@ -27,5 +29,6 @@ class params_default {
   $puppet_repo    = 'puppet.git'
   $puppet_path    = "${git_home}/${puppet_repo}"
 
-  $key            = '<PUBLIC KEY HERE>'
+  $ssh_key        = '<PUBLIC KEY HERE>'
+  $ssh_key_type   = 'rsa'
 }

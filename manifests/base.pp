@@ -1,48 +1,58 @@
 
 node default {
 
+  #-----------------------------------------------------------------------------
+  # Basic systems
+
   include params
+  include global_lib
+
+  # - Time
+  class { 'ntp': autoupdate => false }
+
+  # - Security
+  class { 'iptables': allow_icmp => $params::allow_icmp }
+  class { 'ssh':
+    port        => $params::ssh_port,
+    user_groups => [ $params::admin_group, $params::git_group ],
+  }
+  class { 'sudo':
+    permissions => [
+      "%${params::admin_group} ALL=(ALL) NOPASSWD:ALL",
+    ],
+  }
 
   #-----------------------------------------------------------------------------
+  # User environment
 
-  class { 'global_lib': }
-  class { 'puppet': module_paths => [ "${params::puppet_path}/modules" ] }
+  class { 'users':
+    editor => $params::admin_editor,
+    umask  => $params::user_umask,
+  }
 
-  class { 'ntp': autoupdate => false }
+  users::add_user { $params::admin_name:
+    group      => $params::admin_group,
+    alt_groups => [ $params::git_group ],
+    email      => $params::admin_email,
+    ssh_key    => $params::ssh_key,
+    key_type   => $params::ssh_key_type,
+  }
+
   class { 'locales':
     locales => [ $params::locale ],
   }
 
-  class { 'iptables': allow_icmp => $params::allow_icmp }
+  #-----------------------------------------------------------------------------
+  # Utilities
 
-  #---
-
-  class { 'ssh': port => $params::ssh_port, user_groups => [ $params::admin_group, 'git' ] }
-  class { 'sudo': permissions => [
-    "%${params::admin_group} ALL=(ALL) ALL",
-  ] }
-
-  class { 'users':
-    user_names  => [ $params::admin_name ],
-    user_groups => [ $params::admin_group ],
-    key         => $params::key,
-    email       => $params::admin_email,
-    editor      => $params::admin_editor,
-    umask       => $params::user_umask,
-    init        => true,
-  }
-
-  #---
+  class { 'puppet': module_paths => [ "${params::puppet_path}/modules" ] }
 
   class { 'git':
+    git_user   => $params::git_user,
     git_home   => $params::git_home,
-    git_groups => [ 'git', $params::admin_group ],
-    key        => $params::key,
+    git_group  => $params::git_group,
+    ssh_key    => $params::ssh_key,
     root_email => $params::git_root_email,
     skel_email => $params::git_skel_email,
-  }
-
-  git::repo { $params::puppet_repo:
-    git_home => $params::git_home,
   }
 }
