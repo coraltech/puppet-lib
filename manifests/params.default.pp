@@ -20,7 +20,7 @@ class params_default {
   $admin_editor   = 'vim'
   $admin_email    = ''
 
-  $git_user       = true
+  $git_user       = 'git'
   $git_group      = 'git'
   $git_home       = '/var/git'
   $git_root_email = '<ROOT EMAIL HERE>'

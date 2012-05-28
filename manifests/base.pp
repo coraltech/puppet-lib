@@ -57,8 +57,10 @@ node default {
   }
 
   git::add_repo { $params::puppet_repo:
-    git_home => $params::git_home,
-    source   => $params::puppet_source,
-    base     => false,
+    git_home  => $params::git_home,
+    git_user  => $params::git_user,
+    git_group => $params::git_group,
+    source    => $params::puppet_source,
+    base      => false,
   }
 }
