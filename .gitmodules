@@ -28,3 +28,6 @@
 [submodule "modules/git"]
 	path = modules/git
 	url = git://github.com/coraltech/puppet-git.git
+[submodule "modules/vcsrepo"]
+	path = modules/vcsrepo
+	url = git://github.com/coraltech/puppet-vcsrepo.git
