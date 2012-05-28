@@ -37,3 +37,6 @@
 [submodule "modules/apt"]
 	path = modules/apt
 	url = git://github.com/coraltech/puppet-apt.git
+[submodule "modules/percona"]
+	path = modules/percona
+	url = git://github.com/coraltech/puppet-percona.git
