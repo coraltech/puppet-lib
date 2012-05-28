@@ -28,6 +28,7 @@ class params_default {
 
   $puppet_repo    = 'puppet.git'
   $puppet_path    = "${git_home}/${puppet_repo}"
+  $puppet_source  = 'git://github.com/coraltech/puppet_lib.git'
 
   $ssh_key        = '<PUBLIC KEY HERE>'
   $ssh_key_type   = 'rsa'

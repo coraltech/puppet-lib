@@ -55,4 +55,10 @@ node default {
     root_email => $params::git_root_email,
     skel_email => $params::git_skel_email,
   }
+
+  git::add_repo { $params::puppet_repo:
+    git_home => $params::git_home,
+    source   => $params::puppet_source,
+    base     => false,
+  }
 }
