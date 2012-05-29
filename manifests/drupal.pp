@@ -1,0 +1,4 @@
+
+node drupal inherits default {
+
+}
