@@ -1,4 +1,0 @@
-
-node database inherits default {
-
-}
