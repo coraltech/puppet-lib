@@ -40,3 +40,6 @@
 [submodule "modules/percona"]
 	path = modules/percona
 	url = git://github.com/coraltech/puppet-percona.git
+[submodule "modules/haproxy"]
+	path = modules/haproxy
+	url = git://github.com/coraltech/puppet-haproxy.git
