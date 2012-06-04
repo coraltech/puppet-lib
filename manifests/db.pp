@@ -1,4 +1,6 @@
 
-node db inherits default {
+import 'base.pp'
+
+node db inherits base {
 
 }
