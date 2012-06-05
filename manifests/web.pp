@@ -1,7 +1,7 @@
 
-import 'php.pp'
+import 'base.pp'
 
-node drupal inherits php {
+node web inherits base {
 
   #-----------------------------------------------------------------------------
 
