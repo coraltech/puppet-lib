@@ -46,3 +46,6 @@
 [submodule "modules/apache"]
 	path = modules/apache
 	url = git://github.com/coraltech/puppet-apache.git
+[submodule "modules/php"]
+	path = modules/php
+	url = git://github.com/coraltech/puppet-php.git
