@@ -43,3 +43,6 @@
 [submodule "modules/haproxy"]
 	path = modules/haproxy
 	url = git://github.com/coraltech/puppet-haproxy.git
+[submodule "modules/apache"]
+	path = modules/apache
+	url = git://github.com/coraltech/puppet-apache.git
