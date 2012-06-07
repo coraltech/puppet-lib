@@ -20,6 +20,9 @@ class params_default {
   $admin_editor   = 'vim'
   $admin_email    = ''
 
+  $ssh_key        = '<PUBLIC KEY HERE>'
+  $ssh_key_type   = 'rsa'
+
   $git_user       = 'git'
   $git_group      = 'git'
   $git_home       = '/var/git'
@@ -30,6 +33,6 @@ class params_default {
   $puppet_path    = "${git_home}/${puppet_repo}"
   $puppet_source  = 'git://github.com/coraltech/puppet_lib.git'
 
-  $ssh_key        = '<PUBLIC KEY HERE>'
-  $ssh_key_type   = 'rsa'
+  $http_port      = 80
+  $https_port     = 443
 }
