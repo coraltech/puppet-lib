@@ -1,7 +1,5 @@
 
-import 'base.pp'
-
-node web inherits base {
+class web inherits base {
 
   #-----------------------------------------------------------------------------
 

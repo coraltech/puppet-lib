@@ -1,7 +1,5 @@
 
-import 'web.pp'
-
-node phpapp inherits web {
+class phpapp inherits web {
 
   #-----------------------------------------------------------------------------
 

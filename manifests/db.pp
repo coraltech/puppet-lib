@@ -1,7 +1,5 @@
 
-import 'base.pp'
-
-node db inherits base {
+class db inherits base {
 
   include params
 
