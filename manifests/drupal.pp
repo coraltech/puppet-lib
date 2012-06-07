@@ -1,7 +1,7 @@
 
-import 'php.pp'
+import 'phpapp.pp'
 
-node drupal inherits php {
+node drupal inherits phpapp {
 
   #-----------------------------------------------------------------------------
 
