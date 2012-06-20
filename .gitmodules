@@ -49,3 +49,6 @@
 [submodule "modules/php"]
 	path = modules/php
 	url = git://github.com/coraltech/puppet-php.git
+[submodule "modules/drupal"]
+	path = modules/drupal
+	url = git://github.com/coraltech/puppet-drupal.git
