@@ -52,3 +52,6 @@
 [submodule "modules/drupal"]
 	path = modules/drupal
 	url = git://github.com/coraltech/puppet-drupal.git
+[submodule "modules/hiera"]
+	path = modules/hiera
+	url = git://github.com/coraltech/puppet-hiera.git
