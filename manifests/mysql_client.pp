@@ -1,7 +1,7 @@
 
 class mysql_client inherits base {
 
-  include params
+  $percona_version = hiera('percona_version')
 
   #-----------------------------------------------------------------------------
   # MySQL(ish) database client
@@ -9,6 +9,6 @@ class mysql_client inherits base {
   class { 'percona':
     client          => true,
     server          => false,
-    percona_version => $params::percona_version,
+    percona_version => $percona_version,
   }
 }
