@@ -1,6 +1,8 @@
 
 node panopoly {
 
+  include config
+
   $panopoly_databases             = hiera_hash('panopoly_databases')
 
   $panopoly_db                    = hiera('panopoly_db')
@@ -22,7 +24,6 @@ node panopoly {
   $panopoly_base_url              = hiera('panopoly_base_url')
   $panopoly_cookie_domain         = hiera('panopoly_cookie_domain')
 
-  $git_home                       = hiera('git_home')
   $git_user                       = hiera('git_user')
   $git_group                      = hiera('git_group')
 
@@ -90,7 +91,7 @@ node panopoly {
     databases               => $panopoly_databases,
     base_url                => $panopoly_base_url,
     cookie_domain           => $panopoly_cookie_domain,
-    git_home                => $git_home,
+    git_home                => $config::git_home,
     git_user                => $git_user,
     git_group               => $git_group,
     vhost_ip                => $apache_default_ip,

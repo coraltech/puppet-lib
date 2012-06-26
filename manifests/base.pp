@@ -1,6 +1,8 @@
 
 class base {
 
+  include config
+
   $allow_icmp         = hiera('allow_icmp')
   $ssh_port           = hiera('ssh_port')
   $locale             = hiera('locale')
@@ -15,12 +17,9 @@ class base {
 
   $git_user           = hiera('git_user')
   $git_group          = hiera('git_group')
-  $git_home           = hiera('git_home')
   $git_root_email     = hiera('git_root_email')
   $git_skel_email     = hiera('git_skel_email')
 
-  $puppet_path        = hiera('puppet_path')
-  $puppet_repo        = hiera('puppet_repo')
   $puppet_source      = hiera('puppet_source')
   $puppet_revision    = hiera('puppet_revision')
 
@@ -67,23 +66,34 @@ class base {
   #-----------------------------------------------------------------------------
   # Utilities
 
-  class { 'puppet': module_paths => [ "${puppet_path}/modules" ] }
+  class { 'puppet':
+    module_paths    => $config::puppet_module_paths,
+    hiera_hierarchy => $config::hiera_hierarchy,
+    hiera_backends  => $config::hiera_backends,
+  }
 
   class { 'git':
     user       => $git_user,
     group      => $git_group,
-    home       => $git_home,
+    home       => $config::git_home,
     ssh_key    => $admin_ssh_key,
     root_email => $git_root_email,
     skel_email => $git_skel_email,
   }
 
-  git::repo { $puppet_repo:
-    home     => $git_home,
+  git::repo { $config::puppet_repo:
+    home     => $config::git_home,
     user     => $git_user,
     group    => $git_group,
     source   => $puppet_source,
     revision => $puppet_revision,
+    base     => false,
+  }
+
+  git::repo { $config::config_repo:
+    home     => $config::git_home,
+    user     => $git_user,
+    group    => $git_group,
     base     => false,
   }
 }
