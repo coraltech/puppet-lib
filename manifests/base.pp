@@ -2,6 +2,9 @@
 class base {
 
   include config
+  include global_lib
+
+  #-----------------------------------------------------------------------------
 
   $allow_icmp         = hiera('allow_icmp')
   $ssh_port           = hiera('ssh_port')
@@ -25,8 +28,6 @@ class base {
 
   #-----------------------------------------------------------------------------
   # Basic systems
-
-  include global_lib
 
   # - Time
   class { 'ntp': autoupdate => false }
@@ -73,9 +74,9 @@ class base {
   }
 
   class { 'git':
+    home       => $config::git_home,
     user       => $git_user,
     group      => $git_group,
-    home       => $config::git_home,
     ssh_key    => $admin_ssh_key,
     root_email => $git_root_email,
     skel_email => $git_skel_email,
