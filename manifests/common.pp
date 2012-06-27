@@ -1,5 +1,5 @@
 
-class config {
+class config::common {
 
   #
   # IMOPTANT: Keep these configurations as few as possible!
@@ -11,10 +11,14 @@ class config {
   #-----------------------------------------------------------------------------
 
   $git_home            = '/var/git'
+  $git_user            = 'git'
+  $git_group           = 'git'
 
   $puppet_repo         = 'puppet.git'
   $puppet_path         = "${git_home}/${puppet_repo}"
   $puppet_module_paths = [ "${puppet_path}/modules" ]
+  $puppet_source       = 'git://github.com/coraltech/puppet-lib.git'
+  $puppet_revision     = 'master'
 
   $config_repo         = 'config.git'
   $config_path         = "${git_home}/${config_repo}"

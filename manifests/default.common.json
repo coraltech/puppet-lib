@@ -9,8 +9,6 @@
   'admin_ssh_key' : '<YOUR PUBLIC SSH KEY>',
   'admin_ssh_key_type' : 'rsa',
   'ssh_port' : 22,
-  'git_user' : 'git',
-  'git_group' : 'git',
   'git_root_email' : '<YOUR GIT EMAIL ADDRESS>',
   'git_skel_email' : '<YOUR GIT EMAIL ADDRESS>',
   'puppet_source' : 'git://github.com/coraltech/puppet-lib.git',

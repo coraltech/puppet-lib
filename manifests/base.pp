@@ -1,30 +1,37 @@
 
 class base {
 
-  include config
   include global_lib
 
   #-----------------------------------------------------------------------------
 
-  $allow_icmp         = hiera('allow_icmp')
-  $ssh_port           = hiera('ssh_port')
-  $locale             = hiera('locale')
-  $user_umask         = hiera('user_umask')
+  $allow_icmp          = hiera('allow_icmp')
+  $ssh_port            = hiera('ssh_port')
+  $locale              = hiera('locale')
+  $user_umask          = hiera('user_umask')
 
-  $admin_name         = hiera('admin_name')
-  $admin_group        = hiera('admin_group')
-  $admin_email        = hiera('admin_email')
-  $admin_ssh_key      = hiera('admin_ssh_key')
-  $admin_ssh_key_type = hiera('admin_ssh_key_type')
-  $admin_editor       = hiera('admin_editor')
+  $admin_name          = hiera('admin_name')
+  $admin_group         = hiera('admin_group')
+  $admin_email         = hiera('admin_email')
+  $admin_ssh_key       = hiera('admin_ssh_key')
+  $admin_ssh_key_type  = hiera('admin_ssh_key_type')
+  $admin_editor        = hiera('admin_editor')
 
-  $git_user           = hiera('git_user')
-  $git_group          = hiera('git_group')
-  $git_root_email     = hiera('git_root_email')
-  $git_skel_email     = hiera('git_skel_email')
+  $git_home            = hiera('git_home')
+  $git_user            = hiera('git_user')
+  $git_group           = hiera('git_group')
+  $git_root_email      = hiera('git_root_email')
+  $git_skel_email      = hiera('git_skel_email')
 
-  $puppet_source      = hiera('puppet_source')
-  $puppet_revision    = hiera('puppet_revision')
+  $puppet_repo         = hiera('puppet_repo')
+  $puppet_module_paths = hiera('puppet_module_paths')
+  $puppet_source       = hiera('puppet_source')
+  $puppet_revision     = hiera('puppet_revision')
+
+  $hiera_hierarchy     = hiera('hiera_hierarchy')
+  $hiera_backends      = hiera('hiera_backends')
+
+  $config_repo         = hiera('config_repo')
 
   #-----------------------------------------------------------------------------
   # Basic systems
@@ -68,13 +75,13 @@ class base {
   # Utilities
 
   class { 'puppet':
-    module_paths    => $config::puppet_module_paths,
-    hiera_hierarchy => $config::hiera_hierarchy,
-    hiera_backends  => $config::hiera_backends,
+    module_paths    => $puppet_module_paths,
+    hiera_hierarchy => $hiera_hierarchy,
+    hiera_backends  => $hiera_backends,
   }
 
   class { 'git':
-    home       => $config::git_home,
+    home       => $git_home,
     user       => $git_user,
     group      => $git_group,
     ssh_key    => $admin_ssh_key,
@@ -82,8 +89,8 @@ class base {
     skel_email => $git_skel_email,
   }
 
-  git::repo { $config::puppet_repo:
-    home     => $config::git_home,
+  git::repo { $puppet_repo:
+    home     => $git_home,
     user     => $git_user,
     group    => $git_group,
     source   => $puppet_source,
@@ -91,8 +98,8 @@ class base {
     base     => false,
   }
 
-  git::repo { $config::config_repo:
-    home     => $config::git_home,
+  git::repo { $config_repo:
+    home     => $git_home,
     user     => $git_user,
     group    => $git_group,
     base     => false,

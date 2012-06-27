@@ -1,9 +1,9 @@
 
 node panopoly {
 
-  include config
+  include config::common
 
-  if ! exists($config::hiera_common_config) {
+  if ! exists($config::common::hiera_common_config) {
     # We require Hiera and a valid configuration.
     include bootstrap
   }
@@ -36,6 +36,7 @@ node panopoly {
     $panopoly_base_url              = hiera('panopoly_base_url')
     $panopoly_cookie_domain         = hiera('panopoly_cookie_domain')
 
+    $git_home                       = hiera('git_home')
     $git_user                       = hiera('git_user')
     $git_group                      = hiera('git_group')
 
@@ -122,7 +123,7 @@ node panopoly {
       databases               => $panopoly_databases,
       base_url                => $panopoly_base_url,
       cookie_domain           => $panopoly_cookie_domain,
-      git_home                => $config::git_home,
+      git_home                => $git_home,
       git_user                => $git_user,
       git_group               => $git_group,
       site_ip                 => $apache_default_ip,
