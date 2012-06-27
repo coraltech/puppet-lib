@@ -55,3 +55,6 @@
 [submodule "modules/hiera"]
 	path = modules/hiera
 	url = git://github.com/coraltech/puppet-hiera.git
+[submodule "modules/functions"]
+	path = modules/functions
+	url = git://github.com/coraltech/puppet-functions.git
