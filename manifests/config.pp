@@ -14,15 +14,15 @@ class config {
 
   $puppet_repo         = 'puppet.git'
   $puppet_path         = "${git_home}/${puppet_repo}"
+  $puppet_module_paths = [ "${puppet_path}/modules" ]
 
   $config_repo         = 'config.git'
   $config_path         = "${git_home}/${config_repo}"
 
-  $puppet_module_paths = [ "${puppet_path}/modules" ]
-
+  $hiera_common_config = "${config_path}/common.json"
   $hiera_hierarchy     = [ '%{environment}', '%{hostname}', 'common' ]
   $hiera_backends      = {
     'json'   => $config_path,
-    'puppet' => 'data',
+    'puppet' => 'config',
   }
 }
