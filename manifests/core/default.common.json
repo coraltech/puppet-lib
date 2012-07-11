@@ -43,6 +43,7 @@
   "percona_version" : "5.5",
   "db_allow_remote" : "true",
   "db_port" : "3306",
+  "db_status_port" : "9200",
   "db_admin_user" : "admin",
   "db_admin_pw" : "admin",
   "db_admin_access" : "localhost",
