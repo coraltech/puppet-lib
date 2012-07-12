@@ -13,7 +13,7 @@
 
 3.> apt-get update
 4.> apt-get install puppet -y
-5.> git clone git://github.com/coraltech/puppet-lib.git puppet-lib
+5.> git clone git://github.com/coraltech/puppet-panopoly-lib.git puppet-lib
 6.> puppet apply --modulepath=puppet-lib/modules puppet-lib/manifests/site.pp
 
 #
@@ -27,7 +27,7 @@
 # as needed.
 #
 
-7. > git clone git://github.com/coraltech/puppet-config.git puppet-config
+7. > git clone git://github.com/coraltech/puppet-panopoly-config.git puppet-config
 8. > cd puppet-config
 9. > Edit common.json and add your settings.  Replace all values wrapped in < >.
 10.> git add .
