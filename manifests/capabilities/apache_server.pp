@@ -1,5 +1,5 @@
 
-class apache_server inherits base {
+class apache_server {
 
   $apache_use_dev = hiera('apache_use_dev', false)
   $apache_modules = hiera_array('apache_modules', [])
@@ -16,9 +16,4 @@ class apache_server inherits base {
   a2mod { $apache_modules:
     ensure => 'present',
   }
-
-  #-----------------------------------------------------------------------------
-  # Execution order
-
-  Class['base'] -> Class['apache']
 }

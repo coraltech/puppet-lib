@@ -1,7 +1,7 @@
 /**
  * Panopoly web server profile.
  */
-class panopoly_site {
+class panopoly_site inherits base {
 
   include apache_server
   include php_application
@@ -126,5 +126,6 @@ class panopoly_site {
   #-----------------------------------------------------------------------------
   # Execution order
 
-  Class['apache_server'] -> Class['php_application'] -> Class['drupal']
+  CLass['base']
+  -> Class['apache_server'] -> Class['php_application'] -> Class['drupal']
 }

@@ -1,5 +1,5 @@
 
-class mysql_server inherits base {
+class mysql_server {
 
   $percona_version = hiera('percona_version', '5.5')
 
@@ -43,9 +43,4 @@ class mysql_server inherits base {
     #  grant    => true,
     #}
   }
-
-  #-----------------------------------------------------------------------------
-  # Execution order
-
-  Class['base'] -> Class['percona']
 }

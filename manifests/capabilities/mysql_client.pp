@@ -1,5 +1,5 @@
 
-class mysql_client inherits base {
+class mysql_client {
 
   $percona_version = hiera('percona_version', '5.5')
 
@@ -10,9 +10,4 @@ class mysql_client inherits base {
     server          => false,
     percona_version => $percona_version,
   }
-
-  #-----------------------------------------------------------------------------
-  # Execution order
-
-  Class['base'] -> Class['percona']
 }

@@ -1,7 +1,7 @@
 /**
  * Panopoly database server profile.
  */
-class panopoly_db {
+class panopoly_db inherits base {
 
   include mysql_server
 
@@ -31,4 +31,10 @@ class panopoly_db {
   if $db_allow_remote and $db_allow_remote != 'false' {
     percona::user { 'panopoly_remote': host => '%' }
   }
+
+  #-----------------------------------------------------------------------------
+  # Execution order
+
+  Class['base']
+  -> Class['mysql_server']
 }

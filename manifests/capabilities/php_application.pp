@@ -1,5 +1,5 @@
 
-class php_application inherits base {
+class php_application {
 
   $php_use_apc     = hiera('php_use_apc', true)
   $php_use_xdebug  = hiera('php_use_xdebug', false)
@@ -56,9 +56,4 @@ class php_application inherits base {
       require => Class['php::apache2'],
     }
   }
-
-  #-----------------------------------------------------------------------------
-  # Execution order
-
-  Class['base'] -> Class['php']
 }
