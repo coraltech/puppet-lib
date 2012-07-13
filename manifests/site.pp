@@ -9,11 +9,11 @@
 node default {
 
   import "core/*.pp"
-  include config::common
+  include data::common
 
   $common_config = $::hiera_ready ? {
     true    => hiera('hiera_common_config'),
-    default => $config::common::hiera_common_config,
+    default => $data::common::hiera_common_config,
   }
   notice "Hiera ready: ${::hiera_ready}"
   notice "Common configuration file: ${common_config}"
