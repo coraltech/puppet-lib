@@ -7,14 +7,16 @@
 #
 # On server (only tested so far with Ubuntu 12.04 LTS)
 #
-# Wrap steps 3 - 6 into cloud images which can be created more efficiently on 
+# Wrap steps 3 - 8 into cloud images which can be created more efficiently on 
 # demand. 
 #
 
 3.> apt-get update
-4.> apt-get install puppet -y
+4.> apt-get install git puppet -y
 5.> git clone git://github.com/coraltech/puppet-panopoly-lib.git puppet-lib
-6.> puppet apply --modulepath=puppet-lib/modules puppet-lib/manifests/site.pp
+6.> cd puppet-lib
+7.> git submodule update --init --recursive
+8.> puppet apply --modulepath=modules manifests/site.pp
 
 #
 # Run the following commands anywhere for each new server instance from the 
@@ -27,13 +29,13 @@
 # as needed.
 #
 
-7. > git clone git://github.com/coraltech/puppet-panopoly-config.git puppet-config
-8. > cd puppet-config
-9. > Edit common.json and add your settings.  Replace all values wrapped in < >.
-10.> git add .
-12.> git commit -m "Locking in my configurations."
-13.> git remote add hostname git@host-ip:config.git
-14.> git push hostname master
+9. > git clone git://github.com/coraltech/puppet-panopoly-config.git puppet-config
+10. > cd puppet-config
+11. > Edit common.json and add your settings.  Replace all values wrapped in < >.
+12.> git add .
+13.> git commit -m "Locking in my configurations."
+14.> git remote add hostname git@host-ip:config.git
+15.> git push hostname master
 
 # Done.
 
