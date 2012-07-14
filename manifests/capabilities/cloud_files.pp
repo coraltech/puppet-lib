@@ -5,7 +5,7 @@ class cloud_files {
   $cloudfuse_revision = hiera('cloudfuse_revision', 'master')
 
   #-----------------------------------------------------------------------------
-  # Web server
+  # CloudFuse
 
   class { 'cloudfuse':
     cloudfuse_source   => $cloudfuse_source,
