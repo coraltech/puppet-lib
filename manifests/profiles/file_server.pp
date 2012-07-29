@@ -16,7 +16,8 @@ class file_server inherits base {
 
   #---
 
-  Class['base'] -> Class['cloudfuse'] -> Class['apache']
+  Class['base']
+  -> Class['cloudfuse'] -> Class['apache']
 
   #-----------------------------------------------------------------------------
   # Environment
