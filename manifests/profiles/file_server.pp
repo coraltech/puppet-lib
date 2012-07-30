@@ -4,11 +4,6 @@
 class file_server inherits base {
 
   #-----------------------------------------------------------------------------
-  # Configurations
-
-  $doc_root = hiera('apache_doc_root')
-
-  #-----------------------------------------------------------------------------
   # Required systems
 
   include cloudfuse
@@ -16,17 +11,14 @@ class file_server inherits base {
 
   #---
 
-  Class['base']
-  -> Class['cloudfuse'] -> Class['apache']
+  Class['base'] -> Class['cloudfuse'] -> Class['apache']
 
   #-----------------------------------------------------------------------------
   # Environment
 
-  cloudfuse::mount { 'public-files':
-    mount_dir => $doc_root,
-  }
+  cloudfuse::mount { 'public-files': }
 
   apache::vhost::file { 'default':
-    doc_root => $doc_root,
+    doc_root => $cloudfuse::params::os_mount_dir,
   }
 }
