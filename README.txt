@@ -16,7 +16,7 @@
 5.> git clone git://github.com/coraltech/puppet-panopoly-lib.git puppet-lib
 6.> cd puppet-lib
 7.> git submodule update --init --recursive
-8.> puppet apply --modulepath=modules manifests/site.pp
+8.> puppet apply --modulepath=core/modules site.pp
 
 #
 # Run the following commands anywhere for each new server instance from the 
