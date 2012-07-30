@@ -1,6 +1,3 @@
-[submodule "modules"]
-	path = modules
-	url = git://github.com/coraltech/puppet-modules.git
-[submodule "manifests/core"]
-	path = manifests/core
+[submodule "core"]
+	path = core
 	url = git://github.com/coraltech/puppet-manifest-core.git
