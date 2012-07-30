@@ -8,24 +8,20 @@
  */
 node default {
 
+  # This assumes the puppet-manifest-core has been added to the core directory.
   import "core/*.pp"
   include data::common
 
-  $common_config = $::hiera_ready ? {
-    true    => hiera('hiera_common_config'),
-    default => $data::common::hiera_common_config,
-  }
   notice "Hiera ready: ${::hiera_ready}"
-  notice "Common configuration file: ${common_config}"
+  notice "Common configuration file: ${data::common::os_hiera_common_config}"
 
-  if ! $::hiera_ready or ! exists($common_config) {
+  if ! ( $::hiera_ready and exists($data::common::os_hiera_common_config) ) {
     notice "Bootstrapping server"
 
     # We require Hiera and a valid configuration.
     include bootstrap
   }
   else {
-    import "capabilities/*.pp"
     import "profiles/*.pp"
 
     include base
