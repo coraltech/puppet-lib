@@ -7,7 +7,7 @@ class drupal_site inherits base {
   # Configurations
 
   $sites         = hiera('drupal_sites', [])
-  $use_dev_tools = hiera("drupal_site_use_dev_tools", 'false')
+  $use_dev_tools = hiera('drupal_site_use_dev_tools', 'false')
 
   #-----------------------------------------------------------------------------
   # Required systems
@@ -62,63 +62,63 @@ define drupal_site::environment ( $site = $name ) {
   #-----------------------------------------------------------------------------
   # Configurations
 
-  $default_domain                  = hiera("site_default_domain", '')
-  $default_aliases                 = hiera("site_default_aliases", '')
-  $default_site_ip                 = hiera("site_default_ip", $::ipaddress)
-  $default_admin_email             = hiera("site_default_admin_email", '')
+  $default_domain                  = hiera("drupal_site_default_domain", '')
+  $default_aliases                 = hiera("drupal_site_default_aliases", '')
+  $default_site_ip                 = hiera("drupal_site_default_ip", $::ipaddress)
+  $default_admin_email             = hiera("drupal_site_default_admin_email", '')
 
-  $default_repo_name               = hiera("site_default_repo_name", 'panopoly')
-  $default_source                  = hiera("site_default_source", 'git://git.drupal.org/project/panopoly.git')
-  $default_revision                = hiera("site_default_revision", '7.x-1.x')
+  $default_repo_name               = hiera("drupal_site_default_repo_name", 'panopoly')
+  $default_source                  = hiera("drupal_site_default_source", 'git://git.drupal.org/project/panopoly.git')
+  $default_revision                = hiera("drupal_site_default_revision", '7.x-1.x')
 
-  $default_use_make                = hiera("site_default_use_make", 'true')
-  $default_make_file               = hiera("site_default_make_file", 'build-panopoly.make')
-  $default_include_repos           = hiera("site_default_include_repos", 'false')
+  $default_use_make                = hiera("drupal_site_default_use_make", 'true')
+  $default_make_file               = hiera("drupal_site_default_make_file", 'build-panopoly.make')
+  $default_include_repos           = hiera("drupal_site_default_include_repos", 'false')
 
-  $default_site_dir                = hiera("site_default_conf_dir", 'default')
-  $default_files_dir               = hiera("site_default_files_dir", '')
+  $default_site_dir                = hiera("drupal_site_default_conf_dir", 'default')
+  $default_files_dir               = hiera("drupal_site_default_files_dir", '')
 
-  $default_databases               = hiera_hash("site_default_databases", '')
-  $default_base_url                = hiera("site_default_base_url", '')
-  $default_cookie_domain           = hiera("site_default_cookie_domain", '')
-  $default_session_max_lifetime    = hiera("site_default_session_max_lifetime", '')
-  $default_session_cookie_lifetime = hiera("site_default_session_cookie_lifetime", '')
-  $default_pcre_backtrack_limit    = hiera("site_default_pcre_backtrack_limit", '')
-  $default_pcre_recursion_limit    = hiera("site_default_pcre_recursion_limit", '')
-  $default_ini_settings            = hiera_hash("site_default_ini_settings", {})
-  $default_conf                    = hiera_hash("site_default_conf", {})
+  $default_databases               = hiera_hash("drupal_site_default_databases", '')
+  $default_base_url                = hiera("drupal_site_default_base_url", '')
+  $default_cookie_domain           = hiera("drupal_site_default_cookie_domain", '')
+  $default_session_max_lifetime    = hiera("drupal_site_default_session_max_lifetime", '')
+  $default_session_cookie_lifetime = hiera("drupal_site_default_session_cookie_lifetime", '')
+  $default_pcre_backtrack_limit    = hiera("drupal_site_default_pcre_backtrack_limit", '')
+  $default_pcre_recursion_limit    = hiera("drupal_site_default_pcre_recursion_limit", '')
+  $default_ini_settings            = hiera_hash("drupal_site_default_ini_settings", {})
+  $default_conf                    = hiera_hash("drupal_site_default_conf", {})
 
   #---
 
-  $domain                  = hiera("site_${site}_domain", $default_domain)
-  $aliases                 = hiera("site_${site}_aliases", $default_aliases)
-  $site_ip                 = hiera("site_${site}_ip", $default_site_ip)
-  $admin_email             = hiera("site_${site}_admin_email", $default_admin_email)
+  $domain                  = hiera("drupal_site_${site}_domain", $default_domain)
+  $aliases                 = hiera("drupal_site_${site}_aliases", $default_aliases)
+  $site_ip                 = hiera("drupal_site_${site}_ip", $default_site_ip)
+  $admin_email             = hiera("drupal_site_${site}_admin_email", $default_admin_email)
 
-  $repo_name               = hiera("site_${site}_repo_name", $default_repo_name)
-  $source                  = hiera("site_${site}_source", $default_source)
-  $revision                = hiera("site_${site}_revision", $default_revision)
+  $repo_name               = hiera("drupal_site_${site}_repo_name", $default_repo_name)
+  $source                  = hiera("drupal_site_${site}_source", $default_source)
+  $revision                = hiera("drupal_site_${site}_revision", $default_revision)
 
-  $use_make                = hiera("site_${site}_use_make", $default_use_make)
-  $make_file               = hiera("site_${site}_make_file", $default_make_file)
+  $use_make                = hiera("drupal_site_${site}_use_make", $default_use_make)
+  $make_file               = hiera("drupal_site_${site}_make_file", $default_make_file)
 
   $release_dir             = "${apache::params::web_home}/releases"
-  $include_repos           = hiera("site_${site}_include_repos", $default_include_repos)
+  $include_repos           = hiera("drupal_site_${site}_include_repos", $default_include_repos)
 
   $home                    = "${apache::params::web_home}/${site}"
-  $site_dir                = hiera("site_${site}_conf_dir", $default_site_dir)
-  $files_dir               = hiera("site_${site}_files_dir", $default_files_dir)
+  $site_dir                = hiera("drupal_site_${site}_conf_dir", $default_site_dir)
+  $files_dir               = hiera("drupal_site_${site}_files_dir", $default_files_dir)
 
-  $databases               = hiera_hash("site_${site}_databases", $default_databases)
+  $databases               = hiera_hash("drupal_site_${site}_databases", $default_databases)
 
-  $base_url                = hiera("site_${site}_base_url", $default_base_url)
-  $cookie_domain           = hiera("site_${site}_cookie_domain", $default_cookie_domain)
-  $session_max_lifetime    = hiera("site_${site}_session_max_lifetime", $default_session_max_lifetime)
-  $session_cookie_lifetime = hiera("site_${site}_session_cookie_lifetime", $default_session_cookie_lifetime)
-  $pcre_backtrack_limit    = hiera("site_${site}_pcre_backtrack_limit", $default_pcre_backtrack_limit)
-  $pcre_recursion_limit    = hiera("site_${site}_pcre_recursion_limit", $default_pcre_recursion_limit)
-  $ini_settings            = hiera_hash("site_${site}_ini_settings", $default_ini_settings)
-  $conf                    = hiera_hash("site_${site}_conf", $default_conf)
+  $base_url                = hiera("drupal_site_${site}_base_url", $default_base_url)
+  $cookie_domain           = hiera("drupal_site_${site}_cookie_domain", $default_cookie_domain)
+  $session_max_lifetime    = hiera("drupal_site_${site}_session_max_lifetime", $default_session_max_lifetime)
+  $session_cookie_lifetime = hiera("drupal_site_${site}_session_cookie_lifetime", $default_session_cookie_lifetime)
+  $pcre_backtrack_limit    = hiera("drupal_site_${site}_pcre_backtrack_limit", $default_pcre_backtrack_limit)
+  $pcre_recursion_limit    = hiera("drupal_site_${site}_pcre_recursion_limit", $default_pcre_recursion_limit)
+  $ini_settings            = hiera_hash("drupal_site_${site}_ini_settings", $default_ini_settings)
+  $conf                    = hiera_hash("drupal_site_${site}_conf", $default_conf)
 
   #-----------------------------------------------------------------------------
   # Environment
