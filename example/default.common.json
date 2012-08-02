@@ -172,16 +172,46 @@
   ],
   "keepalived_package_ensure" : "present",
   "keepalived_service_ensure" : "running",
-  "keepalived_configure_firewall" : "true",
+  "keepalived_firewall_ports" : [],
+  "keepalived_sysctl_directives" : {},
   "keepalived_global_definitions" : {
     "notification_email" : [
       "example@example.com"
     ],
-    "notification_email_from" : "loadb01@domain.ext",
+    "notification_email_from" : "hostnae@example.com",
     "smtp_server" : "127.0.0.1",
-    "smtp_connect_timeout" : "15",
-    "lvs_id" : "LVS_1"  
+    "smtp_connect_timeout" : "15"
   },
+  "keepalived_virtual_servers" : [],
+  "keepalived_vrrp_sync_groups" : [],
+  "keepalived_vrrp_instances" : [
+    {
+      "name" : "VI_1",
+      "interface" : "eth0",
+      "state" : "MASTER",
+      "priority" : "101",
+      "virtual_router_id" : "51",
+      "smtp_alert" : "",
+      "authentication" : {
+        "auth_type" : "PASS",
+        "auth_pass" : "password"
+      },
+      "virtual_ipaddress" : [
+        "127.0.0.1"
+      ],
+      "track_script" : [
+        "check_haproxy"
+      ]
+    }  
+  ],
+  "keepalived_vrrp_scripts" : [
+    {
+      "name" : "check_haproxy",
+      "script" : "'killall -0 haproxy'",
+      "interval" : "2",
+      "weight" : "2"
+    }
+  ],
   "haproxy_package_ensure" : "present",
   "haproxy_service_ensure" : "running",
   "haproxy_configure_firewall" : "true",
