@@ -13,7 +13,7 @@
 
 3.> apt-get update
 4.> apt-get install git puppet -y
-5.> git clone git://github.com/coraltech/puppet-panopoly-lib.git puppet-lib
+5.> git clone git://github.com/coraltech/puppet-lib.git puppet-lib
 6.> cd puppet-lib
 7.> git submodule update --init --recursive
 8.> puppet apply --modulepath=core/modules site.pp
@@ -29,7 +29,7 @@
 # as needed.
 #
 
-9. > git clone git://github.com/coraltech/puppet-panopoly-config.git puppet-config
+9. > git clone git://github.com/coraltech/puppet-drupal-config.git puppet-config
 10. > cd puppet-config
 11. > Edit common.json and add your settings.  Replace all values wrapped in < >.
 12.> git add .
