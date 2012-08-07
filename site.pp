@@ -25,6 +25,10 @@ node default {
     import "profiles/*.pp"
 
     include base
-    hiera_include('profiles')
+
+    $profiles = hiera('profiles', [])
+    if ! empty($profiles) {
+      hiera_include('profiles')
+    }
   }
 }
