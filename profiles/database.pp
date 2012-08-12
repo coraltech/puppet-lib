@@ -15,33 +15,22 @@ class database inherits base {
     server => true,
   }
 
-  #---
-
-  Class['base'] -> Class['percona']
-
   #-----------------------------------------------------------------------------
   # Wrapper
 
   if ! empty($databases) {
-    database::environment { $databases: }
+    database::db { $databases: }
   }
 }
 
 #---
 
-define database::environment ( $database = $name ) {
+define database::db ( $database = $name ) {
 
   #-----------------------------------------------------------------------------
   # Configurations
 
-  $default_user     = hiera('database_default_user', 'db_user')
-  $default_password = hiera('database_default_password', 'db_user')
-
-  #---
-
-  $databases        = hiera("database_${database}_databases", [])
-  $user             = hiera("database_${database}_user", $default_user)
-  $password         = hiera("database_${database}_password", $default_password)
+  $databases = hiera("database_${database}_databases", [])
 
   if ! empty($databases) {
     $database_real = $databases
@@ -54,8 +43,12 @@ define database::environment ( $database = $name ) {
   # Environment
 
   percona::database { $database_real:
-    ensure    => present,
-    user_name => $user,
-    password  => $password,
+    ensure        => hiera("database_${database}_ensure", 'present'),
+    sql_dump_file => hiera("database_${database}_sql_dump_file", $percona::params::database_sql_dump_file),
+    user_name     => hiera("database_${database}_user", $percona::params::user_name),
+    password      => hiera("database_${database}_password", $percona::params::user_password),
+    permissions   => hiera("database_${database}_permissions", $percona::params::user_permissions),
+    grant         => hiera("database_${database}_grant", $percona::params::user_grant),
+    remote        => hiera("database_${database}_allow_remote", $percona::params::allow_remote),
   }
 }
