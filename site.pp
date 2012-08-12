@@ -12,11 +12,9 @@ node default {
   import "core/*.pp"
   include data::common
 
-  notice "Hiera ready: ${::hiera_ready}"
-  notice "Common configuration file: ${data::common::os_hiera_common_config}"
-
   if ! ( $::hiera_ready and exists($data::common::os_hiera_common_config) ) {
     notice "Bootstrapping server"
+    notice "Push configurations to: git@${::ipaddress}:config.git"
 
     # We require Hiera and a valid configuration.
     include bootstrap
