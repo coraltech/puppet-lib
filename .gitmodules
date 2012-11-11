@@ -1,3 +1,18 @@
 [submodule "core"]
 	path = core
 	url = git://github.com/coraltech/puppet-manifest-core.git
+[submodule "modules/percona"]
+  path = modules/percona
+  url = git://github.com/coraltech/puppet-percona.git
+[submodule "modules/apache"]
+  path = modules/apache
+  url = git://github.com/coraltech/puppet-apache.git
+[submodule "modules/php"]
+  path = modules/php
+  url = git://github.com/coraltech/puppet-php.git
+[submodule "modules/drupal"]
+  path = modules/drupal
+  url = git://github.com/coraltech/puppet-drupal.git
+[submodule "modules/cloudfuse"]
+  path = modules/cloudfuse
+  url = git://github.com/coraltech/puppet-cloudfuse.git
