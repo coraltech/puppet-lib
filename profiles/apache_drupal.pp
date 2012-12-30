@@ -42,7 +42,7 @@ class apache_drupal inherits base {
   #-----------------------------------------------------------------------------
   # Optional systems
 
-  if $use_dev_tools {
+  if $use_dev_tools == 'true' {
     include php::mod::xdebug
   }
 
