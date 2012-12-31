@@ -6,28 +6,22 @@ class apache_drupal inherits base {
   #-----------------------------------------------------------------------------
   # Configurations
 
-  $php_modules   = global_array('apache_drupal_php_modules', [])
-
-  $sites         = global_array('apache_drupal_sites', [])
-  $use_dev_tools = global_param('apache_drupal_use_dev_tools', 'false')
+  $php_modules = global_array('apache_drupal_php_modules', [])
+  $sites       = global_array('apache_drupal_sites', [])
 
   #-----------------------------------------------------------------------------
   # Required systems
 
-  include php
-  include php::mod::apc
-  include php::mod::curl
-  include php::mod::gd
-  include php::mod::xmlrpc
-  include php::mod::uploadprogress
-  include php::mod::mysql
-
   include apache
   include drupal
 
-  #---
-
+  include php
   include php::apache
+  include php::mod::mysql
+
+  global_include('apache_drupal_classes')
+
+  #---
 
   a2mod { 'php5':
     require => Class['php::apache'],
@@ -38,18 +32,6 @@ class apache_drupal inherits base {
   Class['base'] -> Class['php']
   Class['base'] -> Class['apache']
   Class['php'] -> Class['drupal']
-
-  #-----------------------------------------------------------------------------
-  # Optional systems
-
-  if $use_dev_tools == 'true' {
-    include php::mod::xdebug
-  }
-
-  if ! defined(Class['percona']) {
-    include percona
-    Class['base'] -> Class['percona']
-  }
 
   #-----------------------------------------------------------------------------
   # Environment

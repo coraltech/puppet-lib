@@ -15,6 +15,8 @@ class percona_server inherits base {
     server => true,
   }
 
+  global_include('percona_server_classes')
+
   #-----------------------------------------------------------------------------
   # Environment
 
