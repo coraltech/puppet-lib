@@ -15,6 +15,8 @@ class file_server inherits base {
   include cloudfuse
   include apache
 
+  global_include('file_server_classes')
+
   #---
 
   Class['base'] -> Class['cloudfuse'] -> Class['apache']
