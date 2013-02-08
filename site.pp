@@ -8,6 +8,10 @@
  */
 node default {
 
+  Exec {
+    logoutput => "on_failure",
+  }
+
   # This assumes the puppet-manifest-core has been added to the core directory.
   import "core/*.pp"
   include data::common
