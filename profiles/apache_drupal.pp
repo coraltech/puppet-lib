@@ -14,7 +14,6 @@ class apache_drupal inherits base {
 
   include apache
   include drupal
-
   include php
   include php::apache
   include php::mod::mysql
@@ -27,19 +26,12 @@ class apache_drupal inherits base {
     require => Class['php::apache'],
   }
 
-  #---
-
-  Class['base'] -> Class['php']
-  Class['base'] -> Class['apache']
-  Class['php'] -> Class['drupal']
-
   #-----------------------------------------------------------------------------
   # Environment
 
   if ! empty($php_modules) {
     apache_drupal::php_module { $php_modules: }
   }
-
   if ! empty($sites) {
     apache_drupal::site { $sites: }
   }
@@ -63,14 +55,10 @@ define apache_drupal::php_module ( $module = $name ) {
 #-------------------------------------------------------------------------------
 
 define apache_drupal::site ( $site = $name ) {
-
   $drupal_home = "${apache::params::web_home}/${site}"
-
   $domain      = global_param("apache_drupal_site_${site}_domain", $site)
   $aliases     = global_param("apache_drupal_site_${site}_aliases", $drupal::params::aliases)
   $admin_email = global_param("apache_drupal_site_${site}_admin_email", $drupal::params::admin_email)
-
-  #---
 
   drupal::site { $site:
     home                    => $drupal_home,
